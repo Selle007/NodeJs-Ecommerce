@@ -11,6 +11,23 @@ app.use('/api', rootRouter)
 
 export const prismaClient = new PrismaClient({
     log: ["query"]
+}).$extends({
+    result: {
+        address: {
+            formatedAddress: {
+                needs: {
+                    lineOne: true,
+                    // lineTwo: true,
+                    city: true,
+                    country: true,
+                    zipCode: true,
+                },
+                compute: (addr) => {
+                    return `Address: ${addr.lineOne}, City: ${addr.city}, Country: ${addr.country}, ZipCode: ${addr.zipCode}`
+                }
+            }
+        }
+    }
 })
 app.use(errorMiddleware)
 

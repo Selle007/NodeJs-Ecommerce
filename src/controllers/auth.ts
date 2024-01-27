@@ -60,3 +60,4 @@ export const login = async (req: Request, res: Response) => {
 export const profile = async (req: AuthRequest, res: Response) => {
     res.json(req.user);
 };
+
